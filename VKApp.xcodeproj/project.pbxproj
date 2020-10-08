@@ -12,6 +12,9 @@
 		A36F4316251A375600FFBBDE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A36F4314251A375600FFBBDE /* Main.storyboard */; };
 		A36F4318251A375800FFBBDE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A36F4317251A375800FFBBDE /* Assets.xcassets */; };
 		A36F431B251A375800FFBBDE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A36F4319251A375800FFBBDE /* LaunchScreen.storyboard */; };
+		A3786223252EFC3900AF866D /* PostsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3786222252EFC3900AF866D /* PostsTableViewController.swift */; };
+		A3786226252EFE8D00AF866D /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3786224252EFE8D00AF866D /* PostTableViewCell.swift */; };
+		A3786227252EFE8D00AF866D /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3786225252EFE8D00AF866D /* PostTableViewCell.xib */; };
 		B9D30F53E0B6CD08B96C9241 /* Pods_VKApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6227EB74546475FAF63E5F94 /* Pods_VKApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +40,9 @@
 		A36F431A251A375800FFBBDE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A36F431C251A375800FFBBDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A36F4321251A375800FFBBDE /* VKAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VKAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3786222252EFC3900AF866D /* PostsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsTableViewController.swift; sourceTree = "<group>"; };
+		A3786224252EFE8D00AF866D /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		A3786225252EFE8D00AF866D /* PostTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +96,9 @@
 			children = (
 				A36F430E251A375600FFBBDE /* AppDelegate.swift */,
 				A36F4312251A375600FFBBDE /* AuthorizationViewController.swift */,
+				A3786222252EFC3900AF866D /* PostsTableViewController.swift */,
+				A3786224252EFE8D00AF866D /* PostTableViewCell.swift */,
+				A3786225252EFE8D00AF866D /* PostTableViewCell.xib */,
 				A36F4314251A375600FFBBDE /* Main.storyboard */,
 				A36F4317251A375800FFBBDE /* Assets.xcassets */,
 				A36F4319251A375800FFBBDE /* LaunchScreen.storyboard */,
@@ -193,6 +202,7 @@
 				A36F431B251A375800FFBBDE /* LaunchScreen.storyboard in Resources */,
 				A36F4318251A375800FFBBDE /* Assets.xcassets in Resources */,
 				A36F4316251A375600FFBBDE /* Main.storyboard in Resources */,
+				A3786227252EFE8D00AF866D /* PostTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,6 +264,8 @@
 			files = (
 				A36F4313251A375600FFBBDE /* AuthorizationViewController.swift in Sources */,
 				A36F430F251A375600FFBBDE /* AppDelegate.swift in Sources */,
+				A3786223252EFC3900AF866D /* PostsTableViewController.swift in Sources */,
+				A3786226252EFE8D00AF866D /* PostTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -20,7 +20,7 @@ class AuthorizationViewController: UIViewController, VKSdkUIDelegate, VKSdkDeleg
 		super.viewDidLoad()
 		
 		VKSdk.initialize(withAppId:"7605648").register(self)
-		
+				
 		guard let instance = VKSdk.instance() else {
 			return
 		}
@@ -33,9 +33,12 @@ class AuthorizationViewController: UIViewController, VKSdkUIDelegate, VKSdkDeleg
 			}
 			
 			switch state {
-			case .authorized:
-				print("Авторизация прошла успешно")
-			default: return
+				case .initialized:
+					print("Начинаем авторизацию")
+				case .authorized:
+					print("Авторизация уже пройдена")
+					self.showPostsViewController()
+				default: return
 			}
 		}
 	}
@@ -50,12 +53,22 @@ class AuthorizationViewController: UIViewController, VKSdkUIDelegate, VKSdkDeleg
 	}
 	
 	func vkSdkAccessAuthorizationFinished(with result: VKAuthorizationResult!) {
-		guard let error = result.error else { return }
+		guard let error = result.error else {
+			print("Авторизация прошла успешно")
+			self.showPostsViewController()
+			return
+		}
 		print(error)
 	}
 	
 	func vkSdkUserAuthorizationFailed() {
 		self.navigationController?.popToRootViewController(animated: true)
+	}
+	
+	private func showPostsViewController() {
+		let postsViewController = PostsTableViewController()
+		postsViewController.modalPresentationStyle = .custom
+		self.navigationController?.topViewController?.present(postsViewController, animated: true, completion: nil)
 	}
 }
 

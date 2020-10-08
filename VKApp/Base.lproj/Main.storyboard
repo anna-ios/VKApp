@@ -52,5 +52,24 @@
             </objects>
             <point key="canvasLocation" x="-367" y="29"/>
         </scene>
+        <!--News Table View Controller-->
+        <scene sceneID="Ym8-gz-3Gy">
+            <objects>
+                <tableViewController id="XEz-QG-rro" userLabel="News Table View Controller" customClass="PostsTableViewController" customModule="VKApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="IyD-e6-2QR">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <connections>
+                            <outlet property="dataSource" destination="XEz-QG-rro" id="gSO-CN-PqK"/>
+                            <outlet property="delegate" destination="XEz-QG-rro" id="GOT-Gc-MIN"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="t35-HI-fno"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TLx-JG-A9q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="694" y="808"/>
+        </scene>
     </scenes>
 </document>
