@@ -1,16 +1,20 @@
 PODS:
+  - SwiftyJSON (4.3.0)
   - VK-ios-sdk (1.5.1)
 
 DEPENDENCIES:
+  - SwiftyJSON (~> 4.2)
   - VK-ios-sdk
 
 SPEC REPOS:
   trunk:
+    - SwiftyJSON
     - VK-ios-sdk
 
 SPEC CHECKSUMS:
+  SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
   VK-ios-sdk: 62a10b6571fbcda0657f455fedce7fedf55b4cd0
 
-PODFILE CHECKSUM: 07c8e05cde48a50ef2eb12cd95c38ff03965569c
+PODFILE CHECKSUM: fb0730290a270e2590f15d30f9da6e23ff824811
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.3

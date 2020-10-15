@@ -15,6 +15,11 @@
 		A3786223252EFC3900AF866D /* PostsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3786222252EFC3900AF866D /* PostsTableViewController.swift */; };
 		A3786226252EFE8D00AF866D /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3786224252EFE8D00AF866D /* PostTableViewCell.swift */; };
 		A3786227252EFE8D00AF866D /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3786225252EFE8D00AF866D /* PostTableViewCell.xib */; };
+		A3CFED592538744B0073C0D2 /* PostsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CFED5725386FEA0073C0D2 /* PostsService.swift */; };
+		A3CFED5D25387CE70073C0D2 /* PostItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CFED5525385A400073C0D2 /* PostItem.swift */; };
+		A3CFED5E25387DCC0073C0D2 /* PostCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CFED5A25387B4E0073C0D2 /* PostCellViewModel.swift */; };
+		A3CFED6025388F060073C0D2 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CFED5F25388F060073C0D2 /* UIImageView+Extensions.swift */; };
+		A3CFED6225389BB70073C0D2 /* AuthorItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CFED6125389BB70073C0D2 /* AuthorItem.swift */; };
 		B9D30F53E0B6CD08B96C9241 /* Pods_VKApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6227EB74546475FAF63E5F94 /* Pods_VKApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +48,11 @@
 		A3786222252EFC3900AF866D /* PostsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsTableViewController.swift; sourceTree = "<group>"; };
 		A3786224252EFE8D00AF866D /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		A3786225252EFE8D00AF866D /* PostTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostTableViewCell.xib; sourceTree = "<group>"; };
+		A3CFED5525385A400073C0D2 /* PostItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostItem.swift; sourceTree = "<group>"; };
+		A3CFED5725386FEA0073C0D2 /* PostsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsService.swift; sourceTree = "<group>"; };
+		A3CFED5A25387B4E0073C0D2 /* PostCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCellViewModel.swift; sourceTree = "<group>"; };
+		A3CFED5F25388F060073C0D2 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
+		A3CFED6125389BB70073C0D2 /* AuthorItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +85,7 @@
 		A36F4302251A375600FFBBDE = {
 			isa = PBXGroup;
 			children = (
+				A3CFED5F25388F060073C0D2 /* UIImageView+Extensions.swift */,
 				A36F430D251A375600FFBBDE /* VKApp */,
 				A36F430C251A375600FFBBDE /* Products */,
 				FAFB8343BE28FF7F8337808F /* Pods */,
@@ -97,6 +108,10 @@
 				A36F430E251A375600FFBBDE /* AppDelegate.swift */,
 				A36F4312251A375600FFBBDE /* AuthorizationViewController.swift */,
 				A3786222252EFC3900AF866D /* PostsTableViewController.swift */,
+				A3CFED6125389BB70073C0D2 /* AuthorItem.swift */,
+				A3CFED5525385A400073C0D2 /* PostItem.swift */,
+				A3CFED5725386FEA0073C0D2 /* PostsService.swift */,
+				A3CFED5A25387B4E0073C0D2 /* PostCellViewModel.swift */,
 				A3786224252EFE8D00AF866D /* PostTableViewCell.swift */,
 				A3786225252EFE8D00AF866D /* PostTableViewCell.xib */,
 				A36F4314251A375600FFBBDE /* Main.storyboard */,
@@ -262,9 +277,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3CFED5D25387CE70073C0D2 /* PostItem.swift in Sources */,
 				A36F4313251A375600FFBBDE /* AuthorizationViewController.swift in Sources */,
 				A36F430F251A375600FFBBDE /* AppDelegate.swift in Sources */,
+				A3CFED592538744B0073C0D2 /* PostsService.swift in Sources */,
+				A3CFED6225389BB70073C0D2 /* AuthorItem.swift in Sources */,
 				A3786223252EFC3900AF866D /* PostsTableViewController.swift in Sources */,
+				A3CFED5E25387DCC0073C0D2 /* PostCellViewModel.swift in Sources */,
+				A3CFED6025388F060073C0D2 /* UIImageView+Extensions.swift in Sources */,
 				A3786226252EFE8D00AF866D /* PostTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

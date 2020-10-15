@@ -25,6 +25,31 @@ class PostTableViewCell: UITableViewCell {
 	@IBOutlet weak var footerView: UIView! {
 		didSet { footerView.translatesAutoresizingMaskIntoConstraints = false }
 	}
+	
+	@IBOutlet weak var authorImageView: UIImageView!
+	@IBOutlet weak var authorNameLabel: UILabel!
+	@IBOutlet weak var dateLabel: UILabel!
+	@IBOutlet weak var postTextLabel: UILabel!
+	@IBOutlet weak var postImageView: UIImageView!
+	@IBOutlet weak var likesLabel: UILabel!
+	@IBOutlet weak var commentsLabel: UILabel!
+	@IBOutlet weak var repostsLabel: UILabel!
+	@IBOutlet weak var viewsLabel: UILabel!
+	
+	var viewModel: PostCellViewModel? {
+		didSet {
+			guard let vm = viewModel else { return }
+			
+			authorImageView.imageFromURL(vm.authorImage)
+			authorNameLabel.text = vm.authorName
+			dateLabel.text = vm.date
+			postTextLabel.text = vm.text
+			postImageView.imageFromURL(vm.postImage)
+			likesLabel.text = vm.likes
+			commentsLabel.text = vm.comments
+			repostsLabel.text = vm.reposts
+		}
+	}
 		
 	override func layoutSubviews() {
 		super.layoutSubviews()

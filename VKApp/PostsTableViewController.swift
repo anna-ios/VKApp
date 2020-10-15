@@ -12,9 +12,12 @@ private let kCellNibName = "PostTableViewCell"
 
 class PostsTableViewController: UITableViewController {
 	
+	var posts = [PostItem]()
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		tableView.register(UINib(nibName: kCellNibName, bundle: nil), forCellReuseIdentifier: kCellNibName)
+		self.setPosts()
 	}
 	
 	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -22,12 +25,24 @@ class PostsTableViewController: UITableViewController {
 	}
 	
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 1
+		return self.posts.count
 	}
 
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withIdentifier: kCellNibName, for: indexPath)
+		let cell = tableView.dequeueReusableCell(withIdentifier: kCellNibName, for: indexPath) as! PostTableViewCell
+		cell.viewModel = PostCellViewModel.init(post: posts[indexPath.row])
 		return cell
+	}
+	
+	func setPosts() {
+		PostsService().getVKPosts { posts, error in
+			guard let VKError = error else {
+				self.posts = posts!
+				self.tableView.reloadData()
+				return
+			}
+			print(VKError)
+		}
 	}
 }
 
