@@ -17,7 +17,7 @@ class PostsTableViewController: UITableViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		tableView.register(UINib(nibName: kCellNibName, bundle: nil), forCellReuseIdentifier: kCellNibName)
-		setPosts()
+		loadData()
 	}
 	
 	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -34,16 +34,23 @@ class PostsTableViewController: UITableViewController {
 		return cell
 	}
 	
-	func setPosts() {
-		PostsService().getVKPosts { [weak self] posts, error in
-			if let VKError = error {
-				print(VKError)
-				return
+	func loadData() {
+		let queue = OperationQueue()
+		
+		guard let req = PostsService().getVKRequest() else { return }
+		let getDataOperation = GetDataOperation(req: req)
+		queue.addOperation(getDataOperation)
+		
+		let parseDataOperation = ParseDataOperation()
+		parseDataOperation.addDependency(getDataOperation)
+		parseDataOperation.completionBlock = { [weak self] in
+			self?.posts = parseDataOperation.posts
+			DispatchQueue.main.async {
+				self?.tableView.reloadData()
 			}
-			guard let vkPosts = posts else { return }
-			self?.posts = vkPosts
-			self?.tableView.reloadData()
+			parseDataOperation.completionBlock = nil
 		}
+		queue.addOperation(parseDataOperation)
 	}
 }
 

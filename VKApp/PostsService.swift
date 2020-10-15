@@ -12,16 +12,8 @@ import VK_ios_sdk
 class PostsService: NSObject {
 	
 	func getVKPosts(completion: ((_ results: [PostItem]?, _ error: Error?) -> Void)? = nil) {
-		guard VKSdk.isLoggedIn(),
-			  let accessToken = VKSdk.accessToken().accessToken else {
-				print("Авторизация не пройдена")
-				return
-		}
-		let params = ["filters": "post,photo",
-					  "access_token": accessToken,
-					  "count": 10] as [String : Any]
-		let req = VKRequest(method: "newsfeed.get", parameters: params)
-		req?.execute(resultBlock: { response in
+		guard let req = getVKRequest() else { return }
+		req.execute(resultBlock: { response in
 			let json = JSON(response?.json ?? "")
 			let posts = NSMutableArray()
 			var authors = NSMutableArray()
@@ -53,9 +45,21 @@ class PostsService: NSObject {
 				
 				completion?(posts.copy() as? [PostItem], nil)
 			}
-		}, errorBlock: { error in
+		}) { error in
 			if let err = error { print(err) }
 			completion?(nil, error)
-		})
+		}
+	}
+	
+	func getVKRequest() -> VKRequest? {
+		guard VKSdk.isLoggedIn(),
+			  let accessToken = VKSdk.accessToken().accessToken else {
+				print("Авторизация не пройдена")
+				return nil
+		}
+		let params = ["filters": "post,photo",
+					  "access_token": accessToken,
+					  "count": 10] as [String : Any]
+		return VKRequest(method: "newsfeed.get", parameters: params)
 	}
 }

@@ -21,6 +21,9 @@
 		A3CFED5E25387DCC0073C0D2 /* PostCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CFED5A25387B4E0073C0D2 /* PostCellViewModel.swift */; };
 		A3CFED6025388F060073C0D2 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CFED5F25388F060073C0D2 /* UIImageView+Extensions.swift */; };
 		A3CFED6225389BB70073C0D2 /* AuthorItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CFED6125389BB70073C0D2 /* AuthorItem.swift */; };
+		A3CFED692538C1DF0073C0D2 /* GetDataOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CFED672538C1DF0073C0D2 /* GetDataOperation.swift */; };
+		A3CFED6A2538C1DF0073C0D2 /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CFED682538C1DF0073C0D2 /* AsyncOperation.swift */; };
+		A3CFED702538CF540073C0D2 /* ParseDataOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CFED6C2538C22B0073C0D2 /* ParseDataOperation.swift */; };
 		B9D30F53E0B6CD08B96C9241 /* Pods_VKApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6227EB74546475FAF63E5F94 /* Pods_VKApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +58,9 @@
 		A3CFED5A25387B4E0073C0D2 /* PostCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCellViewModel.swift; sourceTree = "<group>"; };
 		A3CFED5F25388F060073C0D2 /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		A3CFED6125389BB70073C0D2 /* AuthorItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorItem.swift; sourceTree = "<group>"; };
+		A3CFED672538C1DF0073C0D2 /* GetDataOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetDataOperation.swift; sourceTree = "<group>"; };
+		A3CFED682538C1DF0073C0D2 /* AsyncOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncOperation.swift; sourceTree = "<group>"; };
+		A3CFED6C2538C22B0073C0D2 /* ParseDataOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseDataOperation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,7 +93,6 @@
 		A36F4302251A375600FFBBDE = {
 			isa = PBXGroup;
 			children = (
-				A3CFED5F25388F060073C0D2 /* UIImageView+Extensions.swift */,
 				A36F430D251A375600FFBBDE /* VKApp */,
 				A36F430C251A375600FFBBDE /* Products */,
 				FAFB8343BE28FF7F8337808F /* Pods */,
@@ -107,7 +112,9 @@
 		A36F430D251A375600FFBBDE /* VKApp */ = {
 			isa = PBXGroup;
 			children = (
+				A3CFED6B2538C1E70073C0D2 /* Operations */,
 				A36F430E251A375600FFBBDE /* AppDelegate.swift */,
+				A3CFED5F25388F060073C0D2 /* UIImageView+Extensions.swift */,
 				A36F4312251A375600FFBBDE /* AuthorizationViewController.swift */,
 				A3786222252EFC3900AF866D /* PostsTableViewController.swift */,
 				A3CFED6125389BB70073C0D2 /* AuthorItem.swift */,
@@ -123,6 +130,16 @@
 				A3536486253D98AC0066BDD4 /* Double+Extensions.swift */,
 			);
 			path = VKApp;
+			sourceTree = "<group>";
+		};
+		A3CFED6B2538C1E70073C0D2 /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				A3CFED682538C1DF0073C0D2 /* AsyncOperation.swift */,
+				A3CFED672538C1DF0073C0D2 /* GetDataOperation.swift */,
+				A3CFED6C2538C22B0073C0D2 /* ParseDataOperation.swift */,
+			);
+			path = Operations;
 			sourceTree = "<group>";
 		};
 		FAFB8343BE28FF7F8337808F /* Pods */ = {
@@ -281,10 +298,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3CFED5D25387CE70073C0D2 /* PostItem.swift in Sources */,
+				A3CFED6A2538C1DF0073C0D2 /* AsyncOperation.swift in Sources */,
 				A36F4313251A375600FFBBDE /* AuthorizationViewController.swift in Sources */,
 				A36F430F251A375600FFBBDE /* AppDelegate.swift in Sources */,
 				A3CFED592538744B0073C0D2 /* PostsService.swift in Sources */,
 				A3536487253D98AC0066BDD4 /* Double+Extensions.swift in Sources */,
+				A3CFED702538CF540073C0D2 /* ParseDataOperation.swift in Sources */,
+				A3CFED692538C1DF0073C0D2 /* GetDataOperation.swift in Sources */,
 				A3CFED6225389BB70073C0D2 /* AuthorItem.swift in Sources */,
 				A3786223252EFC3900AF866D /* PostsTableViewController.swift in Sources */,
 				A3CFED5E25387DCC0073C0D2 /* PostCellViewModel.swift in Sources */,
