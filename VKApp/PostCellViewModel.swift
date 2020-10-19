@@ -19,14 +19,13 @@ class PostCellViewModel {
 	let authorImage: String
 	
 	init(post: PostItem) {
-		self.date = post.date
-		self.text = post.text
-		self.postImage = post.postImage
-		self.likes = post.likes
-		self.comments = post.comments
-		self.reposts = post.reposts
-		self.authorName = post.authorName
-		self.authorImage = post.authorImage
+		date = post.date
+		text = post.text
+		postImage = post.postImage
+		likes = post.likes
+		comments = post.comments
+		reposts = post.reposts
+		authorName = post.authorName
+		authorImage = post.authorImage
 	}
-
 }

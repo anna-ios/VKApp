@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A3536487253D98AC0066BDD4 /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3536486253D98AC0066BDD4 /* Double+Extensions.swift */; };
 		A36F430F251A375600FFBBDE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36F430E251A375600FFBBDE /* AppDelegate.swift */; };
 		A36F4313251A375600FFBBDE /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36F4312251A375600FFBBDE /* AuthorizationViewController.swift */; };
 		A36F4316251A375600FFBBDE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A36F4314251A375600FFBBDE /* Main.storyboard */; };
@@ -37,6 +38,7 @@
 		3CB43AC6FC60E94F01796597 /* Pods-VKApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKApp.debug.xcconfig"; path = "Target Support Files/Pods-VKApp/Pods-VKApp.debug.xcconfig"; sourceTree = "<group>"; };
 		6227EB74546475FAF63E5F94 /* Pods_VKApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VKApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E132CB74084FB231236546A /* Pods-VKApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKApp.release.xcconfig"; path = "Target Support Files/Pods-VKApp/Pods-VKApp.release.xcconfig"; sourceTree = "<group>"; };
+		A3536486253D98AC0066BDD4 /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
 		A36F430B251A375600FFBBDE /* VKApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VKApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A36F430E251A375600FFBBDE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A36F4312251A375600FFBBDE /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				A36F4317251A375800FFBBDE /* Assets.xcassets */,
 				A36F4319251A375800FFBBDE /* LaunchScreen.storyboard */,
 				A36F431C251A375800FFBBDE /* Info.plist */,
+				A3536486253D98AC0066BDD4 /* Double+Extensions.swift */,
 			);
 			path = VKApp;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 				A36F4313251A375600FFBBDE /* AuthorizationViewController.swift in Sources */,
 				A36F430F251A375600FFBBDE /* AppDelegate.swift in Sources */,
 				A3CFED592538744B0073C0D2 /* PostsService.swift in Sources */,
+				A3536487253D98AC0066BDD4 /* Double+Extensions.swift in Sources */,
 				A3CFED6225389BB70073C0D2 /* AuthorItem.swift in Sources */,
 				A3786223252EFC3900AF866D /* PostsTableViewController.swift in Sources */,
 				A3CFED5E25387DCC0073C0D2 /* PostCellViewModel.swift in Sources */,

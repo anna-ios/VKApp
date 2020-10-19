@@ -14,27 +14,27 @@ private let kInsets = 10.0
 
 class PostTableViewCell: UITableViewCell {
 	
-	@IBOutlet weak var headerView: UIView! {
+	@IBOutlet private weak var headerView: UIView! {
 		didSet { headerView.translatesAutoresizingMaskIntoConstraints = false }
 	}
 	
-	@IBOutlet weak var postContentView: UIView! {
+	@IBOutlet private weak var postContentView: UIView! {
 		didSet { postContentView.translatesAutoresizingMaskIntoConstraints = false }
 	}
 	
-	@IBOutlet weak var footerView: UIView! {
+	@IBOutlet private weak var footerView: UIView! {
 		didSet { footerView.translatesAutoresizingMaskIntoConstraints = false }
 	}
 	
-	@IBOutlet weak var authorImageView: UIImageView!
-	@IBOutlet weak var authorNameLabel: UILabel!
-	@IBOutlet weak var dateLabel: UILabel!
-	@IBOutlet weak var postTextLabel: UILabel!
-	@IBOutlet weak var postImageView: UIImageView!
-	@IBOutlet weak var likesLabel: UILabel!
-	@IBOutlet weak var commentsLabel: UILabel!
-	@IBOutlet weak var repostsLabel: UILabel!
-	@IBOutlet weak var viewsLabel: UILabel!
+	@IBOutlet private weak var authorImageView: UIImageView!
+	@IBOutlet private weak var authorNameLabel: UILabel!
+	@IBOutlet private weak var dateLabel: UILabel!
+	@IBOutlet private weak var postTextLabel: UILabel!
+	@IBOutlet private weak var postImageView: UIImageView!
+	@IBOutlet private weak var likesLabel: UILabel!
+	@IBOutlet private weak var commentsLabel: UILabel!
+	@IBOutlet private weak var repostsLabel: UILabel!
+	@IBOutlet private weak var viewsLabel: UILabel!
 	
 	var viewModel: PostCellViewModel? {
 		didSet {

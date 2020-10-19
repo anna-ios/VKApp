@@ -14,8 +14,10 @@ class AuthorItem {
 	let name: String
 	
 	init(json: JSON) {
-		self.id = json["id"].intValue
-		self.image = json["photo_100"].stringValue
-		self.name = !json["name"].stringValue.isEmpty ? json["name"].stringValue : json["first_name"].stringValue + " " + json["last_name"].stringValue
+		id = json["id"].intValue
+		image = json["photo_100"].stringValue
+		let fullName = json["name"].stringValue
+		let nameWithSurname = json["first_name"].stringValue + " " + json["last_name"].stringValue
+		name = fullName.isEmpty ? nameWithSurname : fullName
 	}
 }

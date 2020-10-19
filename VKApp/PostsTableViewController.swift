@@ -17,7 +17,7 @@ class PostsTableViewController: UITableViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		tableView.register(UINib(nibName: kCellNibName, bundle: nil), forCellReuseIdentifier: kCellNibName)
-		self.setPosts()
+		setPosts()
 	}
 	
 	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -25,23 +25,24 @@ class PostsTableViewController: UITableViewController {
 	}
 	
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return self.posts.count
+		return posts.count
 	}
 
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: kCellNibName, for: indexPath) as! PostTableViewCell
-		cell.viewModel = PostCellViewModel.init(post: posts[indexPath.row])
+		cell.viewModel = PostCellViewModel(post: posts[indexPath.row])
 		return cell
 	}
 	
 	func setPosts() {
 		PostsService().getVKPosts { posts, error in
-			guard let VKError = error else {
-				self.posts = posts!
-				self.tableView.reloadData()
+			if let VKError = error {
+				print(VKError)
 				return
 			}
-			print(VKError)
+			guard let vkPosts = posts else { return }
+			self.posts = vkPosts
+			self.tableView.reloadData()
 		}
 	}
 }

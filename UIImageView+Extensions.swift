@@ -10,6 +10,7 @@ import UIKit
 
 extension UIImageView {
 	func imageFromURL(_ imageUrl: String) {
+		self.image = nil
 		DispatchQueue.global().async { [weak self] in
 			if let url = URL(string: imageUrl) {
 				URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
