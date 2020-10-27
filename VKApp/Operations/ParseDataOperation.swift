@@ -16,9 +16,10 @@ class ParseDataOperation: Operation {
 	
 	override func main() {
 		guard let getDataOperation = dependencies.first as? GetDataOperation,
-			let response = getDataOperation.response
+			let response = getDataOperation.response,
+			let responseJson = response.json
 			else { return }
-		let json = JSON(response.json!)
+		let json = JSON(responseJson)
 		let postItems = NSMutableArray()
 		let authors = NSMutableArray()
 		

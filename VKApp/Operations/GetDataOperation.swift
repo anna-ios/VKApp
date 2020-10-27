@@ -20,9 +20,9 @@ class GetDataOperation: AsyncOperation {
 	
 	override func operationDidStart() {
 		super.operationDidStart()
-		request.execute(resultBlock: { resp in
-			self.response = resp
-			self.state = .finished
+		request.execute(resultBlock: { [weak self] resp in
+			self?.response = resp
+			self?.state = .finished
 		}, errorBlock: { error in
 			print(error ?? "")
 		})

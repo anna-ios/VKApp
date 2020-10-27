@@ -13,7 +13,7 @@ class PostsService: NSObject {
 	
 	func getVKPosts(completion: ((_ results: [PostItem]?, _ error: Error?) -> Void)? = nil) {
 		guard let req = getVKRequest() else { return }
-		req.execute(resultBlock: { response in
+		req.execute(resultBlock: { [weak self] response in
 			let json = JSON(response?.json ?? "")
 			let posts = NSMutableArray()
 			var authors = NSMutableArray()
