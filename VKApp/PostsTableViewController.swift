@@ -35,14 +35,14 @@ class PostsTableViewController: UITableViewController {
 	}
 	
 	func setPosts() {
-		PostsService().getVKPosts { posts, error in
+		PostsService().getVKPosts { [weak self] posts, error in
 			if let VKError = error {
 				print(VKError)
 				return
 			}
 			guard let vkPosts = posts else { return }
-			self.posts = vkPosts
-			self.tableView.reloadData()
+			self?.posts = vkPosts
+			self?.tableView.reloadData()
 		}
 	}
 }

@@ -24,30 +24,35 @@ class PostsService: NSObject {
 		req?.execute(resultBlock: { response in
 			let json = JSON(response?.json ?? "")
 			let posts = NSMutableArray()
-			let authors = NSMutableArray()
-			
+			var authors = NSMutableArray()
+			let dispatchGroup = DispatchGroup()
 			for item in json["profiles"].arrayValue {
-				authors.add(AuthorItem(json: item))
+				DispatchQueue.global().async(group: dispatchGroup) {
+					authors.add(AuthorItem(json: item))
+				}
 			}
 			for item in json["groups"].arrayValue {
-				authors.add(AuthorItem(json: item))
+				DispatchQueue.global().async(group: dispatchGroup) {
+					authors.add(AuthorItem(json: item))
+				}
 			}
-			
-			for item in json["items"].arrayValue {
-				let post = PostItem(json: item)
-				for authorItem in authors {
-					if let author = authorItem as? AuthorItem {
-						if author.id == abs(post.authorId) {
-							post.authorName = author.name
-							post.authorImage = author.image
-							break
+			dispatchGroup.notify(queue: DispatchQueue.main) {
+				for item in json["items"].arrayValue {
+					let post = PostItem(json: item)
+					for authorItem in authors {
+						if let author = authorItem as? AuthorItem {
+							if author.id == abs(post.authorId) {
+								post.authorName = author.name
+								post.authorImage = author.image
+								break
+							}
 						}
 					}
+					posts.add(post)
 				}
-				posts.add(post)
+				
+				completion?(posts.copy() as? [PostItem], nil)
 			}
-			
-			completion?(posts.copy() as? [PostItem], nil)
 		}, errorBlock: { error in
 			if let err = error { print(err) }
 			completion?(nil, error)
