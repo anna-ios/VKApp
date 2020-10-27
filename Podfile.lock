@@ -1,20 +1,32 @@
 PODS:
+  - PromiseKit (6.13.1):
+    - PromiseKit/CorePromise (= 6.13.1)
+    - PromiseKit/Foundation (= 6.13.1)
+    - PromiseKit/UIKit (= 6.13.1)
+  - PromiseKit/CorePromise (6.13.1)
+  - PromiseKit/Foundation (6.13.1):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (6.13.1):
+    - PromiseKit/CorePromise
   - SwiftyJSON (4.3.0)
   - VK-ios-sdk (1.5.1)
 
 DEPENDENCIES:
+  - PromiseKit (~> 6.13.1)
   - SwiftyJSON (~> 4.2)
   - VK-ios-sdk
 
 SPEC REPOS:
   trunk:
+    - PromiseKit
     - SwiftyJSON
     - VK-ios-sdk
 
 SPEC CHECKSUMS:
+  PromiseKit: 28fda91c973cc377875d8c0ea4f973013c05b6db
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
   VK-ios-sdk: 62a10b6571fbcda0657f455fedce7fedf55b4cd0
 
-PODFILE CHECKSUM: fb0730290a270e2590f15d30f9da6e23ff824811
+PODFILE CHECKSUM: ba908bfbae797d6abb368b698c337a53ba935a88
 
 COCOAPODS: 1.9.3

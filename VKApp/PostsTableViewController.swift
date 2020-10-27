@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PromiseKit
 
 private let kCellNibName = "PostTableViewCell"
 
@@ -17,7 +18,7 @@ class PostsTableViewController: UITableViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		tableView.register(UINib(nibName: kCellNibName, bundle: nil), forCellReuseIdentifier: kCellNibName)
-		loadData()
+		launchPromiseChain()
 	}
 	
 	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -51,6 +52,28 @@ class PostsTableViewController: UITableViewController {
 			parseDataOperation.completionBlock = nil
 		}
 		queue.addOperation(parseDataOperation)
+	}
+	
+	func launchPromiseChain() {
+		guard let req = PostsService().getVKRequest() else { return }
+		let postsService = PostsService()
+		postsService.postJsonPromise(request: req)
+			.get { json in
+				postsService.items = json["items"].arrayValue
+			}
+			.then { json -> Promise<[AuthorItem]> in
+				return postsService.authorsPromise(authors: json["profiles"].arrayValue + json["groups"].arrayValue)
+			}
+			.then { authors -> Promise<[PostItem]> in
+				return postsService.postsPromise(authors: authors)
+			}
+			.done(on: .main) { [weak self] posts in
+				self?.posts = posts
+				self?.tableView.reloadData()
+			}
+			.catch { error in
+				print(error)
+			}
 	}
 }
 

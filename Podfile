@@ -5,4 +5,5 @@ target 'VKApp' do
     
   pod "VK-ios-sdk"
   pod 'SwiftyJSON', '~> 4.2'
+  pod 'PromiseKit', '~> 6.13.1'
 end

@@ -6,10 +6,12 @@
 //  Copyright © 2020 Zelinskaya Anna. All rights reserved.
 //
 
+import PromiseKit
 import SwiftyJSON
 import VK_ios_sdk
 
 class PostsService: NSObject {
+	var items = [JSON]()
 	
 	func getVKPosts(completion: ((_ results: [PostItem]?, _ error: Error?) -> Void)? = nil) {
 		guard let req = getVKRequest() else { return }
@@ -61,5 +63,46 @@ class PostsService: NSObject {
 					  "access_token": accessToken,
 					  "count": 10] as [String : Any]
 		return VKRequest(method: "newsfeed.get", parameters: params)
+	}
+	
+	func postJsonPromise(request: VKRequest) -> Promise<JSON> {
+		return Promise { resolver in
+			request.execute { response in
+				resolver.fulfill(JSON(response?.json as Any))
+			} errorBlock: { error in
+				if let er = error { resolver.reject(er) }
+			}
+		}
+	}
+	
+	func authorsPromise(authors: [JSON]) -> Promise<[AuthorItem]> {
+		let dispatchGroup = DispatchGroup()
+		let authorItems = NSMutableArray()
+		for item in authors {
+			DispatchQueue.global().async(group: dispatchGroup) {
+				authorItems.add(AuthorItem(json: item))
+			}
+		}
+		return Promise { resolver in
+			dispatchGroup.notify(queue: DispatchQueue.main) {
+				resolver.fulfill(authorItems as! [AuthorItem])
+			}
+		}
+	}
+	
+	func postsPromise(authors: [AuthorItem]) -> Promise<[PostItem]> {
+		let posts = NSMutableArray()
+		for item in items {
+			let post = PostItem(json: item)
+			for authorItem in authors {
+				if authorItem.id == abs(post.authorId) {
+					post.authorName = authorItem.name
+					post.authorImage = authorItem.image
+					break
+				}
+			}
+			posts.add(post)
+		}
+		return Promise.value(posts as! [PostItem])
 	}
 }
