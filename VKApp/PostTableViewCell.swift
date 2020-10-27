@@ -14,16 +14,41 @@ private let kInsets = 10.0
 
 class PostTableViewCell: UITableViewCell {
 	
-	@IBOutlet weak var headerView: UIView! {
+	@IBOutlet private weak var headerView: UIView! {
 		didSet { headerView.translatesAutoresizingMaskIntoConstraints = false }
 	}
 	
-	@IBOutlet weak var postContentView: UIView! {
+	@IBOutlet private weak var postContentView: UIView! {
 		didSet { postContentView.translatesAutoresizingMaskIntoConstraints = false }
 	}
 	
-	@IBOutlet weak var footerView: UIView! {
+	@IBOutlet private weak var footerView: UIView! {
 		didSet { footerView.translatesAutoresizingMaskIntoConstraints = false }
+	}
+	
+	@IBOutlet private weak var authorImageView: UIImageView!
+	@IBOutlet private weak var authorNameLabel: UILabel!
+	@IBOutlet private weak var dateLabel: UILabel!
+	@IBOutlet private weak var postTextLabel: UILabel!
+	@IBOutlet private weak var postImageView: UIImageView!
+	@IBOutlet private weak var likesLabel: UILabel!
+	@IBOutlet private weak var commentsLabel: UILabel!
+	@IBOutlet private weak var repostsLabel: UILabel!
+	@IBOutlet private weak var viewsLabel: UILabel!
+	
+	var viewModel: PostCellViewModel? {
+		didSet {
+			guard let vm = viewModel else { return }
+			
+			authorImageView.imageFromURL(vm.authorImage)
+			authorNameLabel.text = vm.authorName
+			dateLabel.text = vm.date
+			postTextLabel.text = vm.text
+			postImageView.imageFromURL(vm.postImage)
+			likesLabel.text = vm.likes
+			commentsLabel.text = vm.comments
+			repostsLabel.text = vm.reposts
+		}
 	}
 		
 	override func layoutSubviews() {
