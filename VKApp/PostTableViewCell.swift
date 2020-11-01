@@ -40,11 +40,9 @@ class PostTableViewCell: UITableViewCell {
 		didSet {
 			guard let vm = viewModel else { return }
 			
-			authorImageView.imageFromURL(vm.authorImage)
 			authorNameLabel.text = vm.authorName
 			dateLabel.text = vm.date
 			postTextLabel.text = vm.text
-			postImageView.imageFromURL(vm.postImage)
 			likesLabel.text = vm.likes
 			commentsLabel.text = vm.comments
 			repostsLabel.text = vm.reposts
@@ -90,5 +88,13 @@ class PostTableViewCell: UITableViewCell {
 		let size = CGSize(width: ceil(width), height: ceil(height))
 		
 		footerView.frame = CGRect(origin: origin, size: size)
+	}
+	
+	func setAuthorImage(image: UIImage) {
+		authorImageView.image = image;
+	}
+	
+	func setPostImage(image: UIImage) {
+		postImageView.image = image;
 	}
 }

@@ -5,4 +5,5 @@ target 'VKApp' do
     
   pod "VK-ios-sdk"
   pod 'SwiftyJSON', '~> 4.2'
+  pod 'Alamofire', '~> 4.8'
 end

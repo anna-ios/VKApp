@@ -10,13 +10,16 @@ import UIKit
 
 private let kCellNibName = "PostTableViewCell"
 
-class PostsTableViewController: UITableViewController {
+class PostsTableViewController: UITableViewController, ImageCachingServiceDelegate {
 	
+	private var imageCachingService: ImageCachingService?
 	var posts = [PostItem]()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		tableView.register(UINib(nibName: kCellNibName, bundle: nil), forCellReuseIdentifier: kCellNibName)
+		imageCachingService = ImageCachingService()
+		imageCachingService?.delegate = self
 		loadData()
 	}
 	
@@ -30,7 +33,14 @@ class PostsTableViewController: UITableViewController {
 
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: kCellNibName, for: indexPath) as! PostTableViewCell
-		cell.viewModel = PostCellViewModel(post: posts[indexPath.row])
+		let post = posts[indexPath.row]
+		cell.viewModel = PostCellViewModel(post: post)
+		if let authorImage = imageCachingService?.getImage(atIndexPath: indexPath, byUrl: post.authorImage) {
+			cell.setAuthorImage(image: authorImage)
+		}
+		if let postImage = imageCachingService?.getImage(atIndexPath: indexPath, byUrl: post.postImage) {
+			cell.setPostImage(image: postImage)
+		}
 		return cell
 	}
 	
@@ -51,6 +61,12 @@ class PostsTableViewController: UITableViewController {
 			parseDataOperation.completionBlock = nil
 		}
 		queue.addOperation(parseDataOperation)
+	}
+	
+	func reloadRow(indexPath: IndexPath) {
+		DispatchQueue.main.async { [weak self] in
+			self?.tableView.reloadRows(at: [indexPath], with: .none)
+		}
 	}
 }
 
