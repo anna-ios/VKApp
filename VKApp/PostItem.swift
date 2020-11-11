@@ -11,6 +11,8 @@ import SwiftyJSON
 class PostItem {
 	let text: String
 	let postImage: String
+	let postImageWidth: Float
+	let postImageHeight: Float
 	let likes: String
 	let comments: String
 	let reposts: String
@@ -22,6 +24,8 @@ class PostItem {
 	init(json: JSON) {
 		text = json["text"].stringValue
 		postImage = json["attachments"][0]["photo"]["photo_807"].stringValue
+		postImageWidth = json["attachments"][0]["photo"]["width"].floatValue
+		postImageHeight = json["attachments"][0]["photo"]["height"].floatValue
 		likes = json["likes"]["count"].stringValue
 		comments = json["comments"]["count"].stringValue
 		reposts = json["reposts"]["count"].stringValue

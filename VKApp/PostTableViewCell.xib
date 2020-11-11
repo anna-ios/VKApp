@@ -61,7 +61,7 @@
                                 <rect key="frame" x="10" y="0.0" width="394" height="150"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="150" id="5BL-dj-9xA"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="200" id="W95-7l-eF0"/>
                                 </constraints>
                                 <string key="text">Уж небо осенью дышало,
 Уж реже солнышко блистало,
@@ -78,10 +78,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3Mt-bR-Zj5">
-                                <rect key="frame" x="0.0" y="170" width="404" height="180"/>
+                                <rect key="frame" x="10" y="170" width="394" height="180"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="180" id="l3E-yd-TF6"/>
+                                </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0A9-Fw-Nan">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0A9-Fw-Nan">
                                 <rect key="frame" x="8" y="150" width="152" height="20"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -90,12 +93,15 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="Показать полностью..."/>
+                                <connections>
+                                    <action selector="showMoreButtonClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="RTi-9T-PTd"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="0A9-Fw-Nan" firstAttribute="top" secondItem="Xqx-yU-kYK" secondAttribute="bottom" id="5Og-u6-8fa"/>
-                            <constraint firstItem="3Mt-bR-Zj5" firstAttribute="leading" secondItem="fjl-ln-rXT" secondAttribute="leading" id="6TB-Uh-cyM"/>
+                            <constraint firstItem="3Mt-bR-Zj5" firstAttribute="leading" secondItem="fjl-ln-rXT" secondAttribute="leading" constant="10" id="6TB-Uh-cyM"/>
                             <constraint firstItem="Xqx-yU-kYK" firstAttribute="top" secondItem="fjl-ln-rXT" secondAttribute="top" id="KZE-We-kAV"/>
                             <constraint firstItem="0A9-Fw-Nan" firstAttribute="bottom" secondItem="3Mt-bR-Zj5" secondAttribute="top" id="Mb8-HX-7sb"/>
                             <constraint firstAttribute="trailing" secondItem="3Mt-bR-Zj5" secondAttribute="trailing" constant="10" id="Q7l-94-8Rx"/>
@@ -190,9 +196,12 @@
                 <outlet property="headerView" destination="MeX-pG-vNs" id="34f-ae-BqZ"/>
                 <outlet property="likesLabel" destination="bqb-xd-JOz" id="MEn-Wt-EuO"/>
                 <outlet property="postContentView" destination="fjl-ln-rXT" id="9ru-dv-4K4"/>
+                <outlet property="postImageHeightConstraint" destination="l3E-yd-TF6" id="v7O-Vn-CgA"/>
                 <outlet property="postImageView" destination="3Mt-bR-Zj5" id="05p-aW-xLR"/>
                 <outlet property="postTextLabel" destination="Xqx-yU-kYK" id="W3B-CG-12Q"/>
+                <outlet property="postTextLabelHeightConstraint" destination="W95-7l-eF0" id="xXb-b2-idw"/>
                 <outlet property="repostsLabel" destination="H53-XO-oK0" id="iaT-aN-jj8"/>
+                <outlet property="showMoreButton" destination="0A9-Fw-Nan" id="Q3j-df-2xP"/>
                 <outlet property="viewsLabel" destination="Rdu-Nc-MzL" id="vdh-fg-DVH"/>
             </connections>
             <point key="canvasLocation" x="226.08695652173915" y="-18.080357142857142"/>

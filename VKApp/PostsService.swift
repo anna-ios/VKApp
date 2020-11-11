@@ -11,12 +11,13 @@ import VK_ios_sdk
 
 class PostsService: NSObject {
 	
-	func getVKPosts(completion: ((_ results: [PostItem]?, _ error: Error?) -> Void)? = nil) {
-		guard let req = getVKRequest() else { return }
-		req.execute(resultBlock: { [weak self] response in
+	func getPartVKPosts(startFrom: String, completion: ((_ results: [PostItem]?, _ nextFrom: String?, _ error: Error?) -> Void)? = nil) {
+		guard let request = getVKRequest(startFrom: startFrom) else { return }
+		request.execute(resultBlock: { [weak self] response in
 			let json = JSON(response?.json ?? "")
 			let posts = NSMutableArray()
 			var authors = NSMutableArray()
+			var nextFrom = ""
 			let dispatchGroup = DispatchGroup()
 			for item in json["profiles"].arrayValue {
 				DispatchQueue.global().async(group: dispatchGroup) {
@@ -28,6 +29,11 @@ class PostsService: NSObject {
 					authors.add(AuthorItem(json: item))
 				}
 			}
+			
+			DispatchQueue.global().async(group: dispatchGroup) {
+				nextFrom = json["next_from"].stringValue
+			}
+			
 			dispatchGroup.notify(queue: DispatchQueue.main) {
 				for item in json["items"].arrayValue {
 					let post = PostItem(json: item)
@@ -43,21 +49,22 @@ class PostsService: NSObject {
 					posts.add(post)
 				}
 				
-				completion?(posts.copy() as? [PostItem], nil)
+				completion?(posts.copy() as? [PostItem], nextFrom, nil)
 			}
 		}) { error in
 			if let err = error { print(err) }
-			completion?(nil, error)
+			completion?(nil, nil, error)
 		}
 	}
 	
-	func getVKRequest() -> VKRequest? {
+	func getVKRequest(startFrom: String) -> VKRequest? {
 		guard VKSdk.isLoggedIn(),
 			  let accessToken = VKSdk.accessToken().accessToken else {
 				print("Авторизация не пройдена")
 				return nil
 		}
 		let params = ["filters": "post,photo",
+					  "start_from": startFrom,
 					  "access_token": accessToken,
 					  "count": 10] as [String : Any]
 		return VKRequest(method: "newsfeed.get", parameters: params)

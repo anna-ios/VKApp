@@ -12,6 +12,8 @@ class PostCellViewModel {
 	let date: String
 	let text: String
 	let postImage: String
+	let postImageWidth: Float
+	let postImageHeight: Float
 	let likes: String
 	let comments: String
 	let reposts: String
@@ -22,6 +24,8 @@ class PostCellViewModel {
 		date = post.date
 		text = post.text
 		postImage = post.postImage
+		postImageWidth = post.postImageWidth
+		postImageHeight = post.postImageHeight
 		likes = post.likes
 		comments = post.comments
 		reposts = post.reposts

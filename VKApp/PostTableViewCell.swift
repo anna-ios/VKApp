@@ -8,11 +8,17 @@
 
 import UIKit
 
+protocol PostTableViewCellDelegate {
+	func reloadCell(cell: PostTableViewCell)
+}
+
 private let kHeaderViewHeight = 50.0
 private let kFooterViewHeight = 40.0
 private let kInsets = 10.0
 
 class PostTableViewCell: UITableViewCell {
+	
+	var delegate:PostTableViewCellDelegate?
 	
 	@IBOutlet private weak var headerView: UIView! {
 		didSet { headerView.translatesAutoresizingMaskIntoConstraints = false }
@@ -35,6 +41,9 @@ class PostTableViewCell: UITableViewCell {
 	@IBOutlet private weak var commentsLabel: UILabel!
 	@IBOutlet private weak var repostsLabel: UILabel!
 	@IBOutlet private weak var viewsLabel: UILabel!
+	@IBOutlet private weak var showMoreButton: UIButton!
+	@IBOutlet private weak var postImageHeightConstraint: NSLayoutConstraint!
+	@IBOutlet private weak var postTextLabelHeightConstraint: NSLayoutConstraint!
 	
 	var viewModel: PostCellViewModel? {
 		didSet {
@@ -44,11 +53,29 @@ class PostTableViewCell: UITableViewCell {
 			authorNameLabel.text = vm.authorName
 			dateLabel.text = vm.date
 			postTextLabel.text = vm.text
-			postImageView.imageFromURL(vm.postImage)
 			likesLabel.text = vm.likes
 			commentsLabel.text = vm.comments
 			repostsLabel.text = vm.reposts
+			
+			postTextLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
+			postTextLabel.sizeToFit()
+			
+			if vm.postImageHeight == 0 {
+				postImageHeightConstraint.constant = 0
+			}
+			else {
+				let ratio = CGFloat(vm.postImageWidth / vm.postImageHeight)
+				
+				let imageHeight = self.contentView.frame.width / ratio;
+				postImageHeightConstraint.constant = ceil(imageHeight)
+				
+				postImageView.imageFromURL(vm.postImage)
+			}
 		}
+	}
+	
+	@IBAction func showMoreButtonClick(_ sender: Any) {
+		delegate?.reloadCell(cell: self)
 	}
 		
 	override func layoutSubviews() {
@@ -57,6 +84,33 @@ class PostTableViewCell: UITableViewCell {
 		setHeaderViewFrame()
 		setPostContentViewViewFrame()
 		setFooterViewViewFrame()
+	}
+	
+	func setShowMoreButtonTitle (expanded: Bool) {
+		showMoreButton.setTitle(expanded ? "Скрыть" : "Показать полностью...", for: .normal)
+	}
+	
+	func setPostTextLabelHeight (expanded: Bool) {
+		guard expanded else {
+			postTextLabelHeightConstraint.constant = 200
+			return
+		}
+		if let text = postTextLabel.attributedText {
+			let postTextHeight = text.height(withWidth: postTextLabel.frame.width)
+			postTextLabelHeightConstraint.constant = postTextHeight
+		}
+	}
+	
+	func hideShowMoreButton(expanded: Bool) {
+		if expanded {
+			return
+		}
+		if let text = postTextLabel.attributedText {
+			let textHeight = text.height(withWidth: postTextLabel.frame.width)
+			if (textHeight < postTextLabel.frame.height) {
+				showMoreButton.isHidden =  true
+			}
+		}
 	}
 	
 	func setHeaderViewFrame() {
@@ -90,5 +144,14 @@ class PostTableViewCell: UITableViewCell {
 		let size = CGSize(width: ceil(width), height: ceil(height))
 		
 		footerView.frame = CGRect(origin: origin, size: size)
+	}
+}
+
+extension NSAttributedString {
+	func height(withWidth width: CGFloat) -> CGFloat {
+		let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
+		let boundingBox = boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, context: nil)
+
+		return ceil(boundingBox.height)
 	}
 }
